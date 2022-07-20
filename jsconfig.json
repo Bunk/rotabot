@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "#app/*": ["./src/*.js"],
+      "#app/data": ["./src/data/index.js"],
+      "#app/jobs": ["./src/jobs/index.js"],
+      "#app/events": ["./src/events/index.js"],
+      "#plugins/pagerduty": ["./plugins/pagerduty/index.js"]
+    }
+  }
+}

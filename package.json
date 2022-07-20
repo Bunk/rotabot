@@ -1,0 +1,57 @@
+{
+  "name": "rotabot",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "ava --verbose",
+    "start": "nodemon app.js | ./node_modules/.bin/bunyan",
+    "debug": "nodemon --inspect=0.0.0.0:5858 app.js | ./node_modules/.bin/bunyan",
+    "debug:bunyan": "yarn debug | ./node_modules/.bin/bunyan",
+    "docker": "docker-compose up",
+    "lint": "standard"
+  },
+  "standard": {
+    "ignore": [
+      "**/node_modules/"
+    ]
+  },
+  "imports": {
+    "#app/*": "./src/*.js",
+    "#app/data": "./src/data/index.js",
+    "#app/jobs": "./src/jobs/index.js",
+    "#app/events": "./src/events/index.js",
+    "#app/utils": "./src/utils/index.js",
+    "#configs": "./data/configs/index.js",
+    "#plugins/*": "./plugins/*.js",
+    "#plugins/pagerduty": "./plugins/pagerduty/index.js",
+    "#plugins/slack": "./plugins/slack/index.js",
+    "#plugins/schedule-poller": "./plugins/schedule-poller/index.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "3.12.0",
+    "@slack/client": "5.0.2",
+    "date-fns": "2.28.0",
+    "dotenv": "16",
+    "eventemitter2": "6.4.6",
+    "express": "^4.17.1",
+    "expression-eval": "5.0.0",
+    "got": "12",
+    "hyperid": "3.0.1",
+    "joi": "17.6.0",
+    "koa-compose": "^4.1.0",
+    "lodash": "4.17.21",
+    "lodash-es": "4.17.21",
+    "node-cron": "3",
+    "object-mapper": "6.2.0",
+    "query-string": "7.1.1",
+    "ulid": "2.3.0",
+    "yaml": "2.1.1"
+  },
+  "devDependencies": {
+    "ava": "4.3.1",
+    "bunyan": "^1.8.12",
+    "nodemon": "2",
+    "standard": "17.0.0"
+  }
+}

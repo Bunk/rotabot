@@ -1,0 +1,16 @@
+version: 2
+
+schedules:
+  primary:
+    type: pagerduty
+    escalation-policy-id: PYLHQ0H
+
+crons:
+  weekly:
+    schedule: 0 7 * * 1
+    actions:
+      - uses: actions/send-slack-message
+        channel: '#ent-auth'
+        template: assets/templates/upcoming-schedule.tpl
+        template-args:
+          schedule: $schedules.primary
