@@ -6,12 +6,11 @@ export default function factory (opt) {
   const channel = opt['channel-id']
   const template = templates.getTemplate(opt.template)
 
-  return (ctx, event) => {
+  return async (ctx, event) => {
     ctx.log.trace({ ...opt, ...event }, 'action: slack/send-message')
 
-    ctx.clients.slack.client.chat.postMessage({
-      channel,
-      ...template(event)
-    })
+    const message = await template(ctx, event)
+
+    ctx.clients.slack.client.chat.postMessage({ channel, ...message })
   }
 }

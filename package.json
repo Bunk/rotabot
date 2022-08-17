@@ -3,12 +3,11 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "bin": "./src/app.js",
   "scripts": {
     "test": "ava --verbose",
-    "start": "nodemon app.js | ./node_modules/.bin/bunyan",
-    "debug": "nodemon --inspect=0.0.0.0:5858 app.js | ./node_modules/.bin/bunyan",
-    "debug:bunyan": "yarn debug | ./node_modules/.bin/bunyan",
-    "docker": "docker-compose up",
+    "start": "nodemon src/app.js | bunyan",
+    "debug": "nodemon --inspect=0.0.0.0:5858 src/app.js | bunyan",
     "lint": "standard"
   },
   "standard": {

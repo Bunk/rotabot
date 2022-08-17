@@ -7,9 +7,7 @@ let config = {}
 const factories = {
   rotabot: () => Joi.object().keys({
     PORT: Joi.number().default(80),
-    LOG_LEVEL: Joi.string()
-      .allow('trace', 'debug', 'info', 'warn', 'error', 'fatal')
-      .default('info'),
+    LOG_LEVEL: Joi.string().allow('trace', 'debug', 'info', 'warn', 'error', 'fatal').default('info'),
     ENVIRONMENT: Joi.string().default('production'),
     JIRA_HOST: Joi.string().required(),
     JIRA_USERNAME: Joi.string().required(),

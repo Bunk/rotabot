@@ -7,7 +7,10 @@ export function compile (str) {
 
 export function evaluate (str, ctx) {
   const fn = compile(str)
-  return fn({ _: lodash, ...ctx })
+  return fn({
+    $: lodash,
+    ...ctx
+  })
 }
 
 export default { compile, evaluate }

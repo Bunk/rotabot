@@ -13,7 +13,7 @@ logs.defaultLevel(process.env.LOG_LEVEL)
 const log = logs.create({ name: 'rotabot' })
 
 const run = async () => {
-  const ctx = { log }
+  const ctx = { log, logs }
 
   // Register internal plugins
   await pagerduty.install(ctx, installer)
@@ -24,6 +24,7 @@ const run = async () => {
   ctx.config = await config.build(process.env)
   if (ctx.config.errors) throw ctx.config.errors
 
+  // Build all clients from registered plugins
   ctx.clients = await clients.build(ctx)
 
   await events.listen(ctx)

@@ -18,25 +18,27 @@ on:
     # Note:  This is the same as the following 'if'
     # if: $event.schedule.ref === 'primary'
     steps:
-      - uses: slack/update-group
-        group-id: SC9QNKU8J
-        group-name: "@hero-core-auth"
-        users: slackId(first($event.users))
+      # - uses: slack/update-group
+      #   group-id: SC9QNKU8J
+      #   select: $event.current.users
+      # - uses: slack/send-message
+      #   channel-id: C03R8QVB5PH
+      #   template: slack/channel/schedule-changed
+      # - uses: slack/update-group
+      #   group-id: SDT51EA6M
+      #   select: $.first($event.current.users)
       - uses: slack/send-message
         channel-id: GDS9MREQ0
-        channel-name: "#hero-rotator-test"
         template: slack/channel/schedule-changed
 
-  - event: schedule:changed
-    if: $event.schedule.ref === 'frontend'
-    steps:
-      - uses: slack/update-group
-        group-id: SR6RES91B
-        group-name: "@core-auth-frontend"
+  # - event: schedule:changed
+  #   if: $event.schedule.ref === 'frontend'
+  #   steps:
+  #     - uses: slack/update-group
+  #       group-id: SR6RES91B
 
-  - event: schedule:changed
-    if: $event.schedule.ref === 'backend'
-    steps:
-      - uses: slack/update-group
-        group-id: SQYTCEQDP
-        group-name: "@core-auth-backend"
+  # - event: schedule:changed
+  #   if: $event.schedule.ref === 'backend'
+  #   steps:
+  #     - uses: slack/update-group
+  #       group-id: SQYTCEQDP

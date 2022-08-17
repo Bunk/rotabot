@@ -1,14 +1,14 @@
-import _ from 'lodash'
+import lodash from 'lodash'
 import actions from '#app/actions'
-import expr from '#app/utils/expr'
+import { expr } from '#app/utils'
 
 export function lookupAction (step) {
   const factory = actions.getAction(step.uses)
   const action = factory(step)
-  return safe(step.uses, action)
+  return safeAction(step.uses, action)
 }
 
-export function safe (key, handler) {
+export function safeAction (key, handler) {
   return (ctx, event) => {
     const onError = (err) => ctx.log.error({ err }, `Unable to run: ${key}`)
     try {
@@ -35,11 +35,10 @@ export const conditionalFn = (fn, handler) => {
     if (!fn) return handler(ctx, event)
 
     try {
-      const exprCtx = {
-        $: _,
+      const truthy = !!fn({
+        $: lodash,
         $event: event
-      }
-      const truthy = !!fn(exprCtx)
+      })
       if (truthy) return handler(ctx, event)
     } catch (err) {
       ctx.log.error({ err }, 'Error in conditional')
